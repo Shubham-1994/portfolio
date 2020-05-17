@@ -24,6 +24,7 @@ code {
   height: 40vmin;
   pointer-events: none;
   border-radius: 100%;
+  
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
@@ -234,11 +235,16 @@ button:focus{
 }
 .modal img{
   box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
-  width: 50%;
+  width: 100%;
 }
 .modal .read-more{
   position: absolute;
   top: 0;
   right: 0;
   /* font-size:15px; */
+}
+.modal .job-container{
+  /* text-align: center; */
+  margin: 0 auto;
+  width: 50%;
 }

@@ -12,21 +12,24 @@ export const Work = () => {
 
   const modalContent = data.workData === 'joblisting' ? (<section>
     <button onClick={() => setFlag({ show: false })} className="read-more">&larr; BACK</button>
-    <img src={joblisting} alt="joblisting"></img>
+    <div className="job-container">
+      <img src={joblisting} alt="joblisting"></img>
 
-    <h2>Job Listing</h2>
-    <p>Job listing is a web page which have the collectiong of available job which user can filter according to their need.</p>
-    <h4> Tech Stack </h4>
-    <p><span>Angular</span>-<span>Bootstrap</span>-<span>PWA</span></p>
-
+      <h2>Job Listing</h2>
+      <p>Job listing is a web page which have the collectiong of available job which user can filter according to their need.</p>
+      <h4> Tech Stack </h4>
+      <p><span>Angular</span>-<span>Bootstrap</span>-<span>PWA</span></p>
+    </div>
   </section>)
     :
     (<section>
       <button onClick={() => setFlag({ show: false })} className="read-more">&larr; BACK</button>
-      <img src={tinyurl} alt="tinyurl"></img><h2>Tiny URL</h2>
-      <p>Tiny URL is a web app which will shorten the long string of url.</p>
-      <h4> Tech Stack </h4>
-      <p><span>Django</span>-<span>Python</span>-<span>SQLite</span></p>
+      <div className="job-container">
+        <img src={tinyurl} alt="tinyurl"></img><h2>Tiny URL</h2>
+        <p>Tiny URL is a web app which will shorten the long string of url.</p>
+        <h4> Tech Stack </h4>
+        <p><span>Django</span>-<span>Python</span>-<span>SQLite</span></p>
+      </div>
     </section>);
 
 
