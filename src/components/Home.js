@@ -34,6 +34,7 @@ export function Home() {
           <Link className="App-link" to="/blogs">Blogs</Link>
         </div> */}
         <div className="button-container">
+          <Link to="/about"><button className="read-more">ABOUT</button></Link>
           <Link to="/work"><button className="read-more">WORK</button></Link>
           <Link to="/blogs"><button className="read-more">BLOGS</button></Link>
         </div>
