@@ -248,3 +248,11 @@ button:focus{
   margin: 0 auto;
   width: 50%;
 }
+@media (max-width: 575.98px) { 
+  .work-container{
+    flex-direction: column;
+  }
+  .modal .read-more{
+    top: -65px;
+  }
+}
