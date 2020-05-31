@@ -1,67 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import joblisting from '../images/joblisting.PNG';
 import tinyurl from '../images/tinyurl.png';
+import rockpaperscissors from '../images/rockpaperscissors.PNG';
 
 
-const project1 = `{ project: 'Job Listing', description: 'Job list page with filters' }`
-// const project2 = `{ project: 'Tiny Url', description: 'shortening the long string of url' }`
+
 
 export const Work = () => {
-  // let flag = false;
-  let [data, setFlag] = useState({ show: false, workData: null });
+  let [data, setFlag] = useState({ show: false, project: null });
+  let projects = [
+    { id: 1, name: "ROCK-PAPER-SCISSORS", desc: "Rock paper scissors is a basic game played with fingers. Here is the web version of it where you can play against computer.", tech: ['HTML', 'CSS', 'JavaScript'], github: "https://github.com/Shubham-1994/rock-paper-scissors", website: "https://paper-scissors-rock.netlify.app/", source: { name: rockpaperscissors } },
+    { id: 2, name: "JOB LISTING", desc: "Job listing is a web page which have the collectiong of available job which user can filter according to their need", tech: ['Angular', 'Bootstrap', 'PWA'], github: "https://github.com/Shubham-1994/JobListing", website: "https://myjoblisting.netlify.app/", source: { name: joblisting } },
+    { id: 3, name: "TINY URL", desc: "Tiny URL is a web app which will shorten the long string of url.", tech: ['Django', 'Python', 'SQLite'], github: "https://github.com/Shubham-1994/TinyUrl", source: { name: tinyurl } },
 
-  const modalContent = data.workData === 'joblisting' ? (<section>
-    <button onClick={() => setFlag({ show: false })} className="read-more">&larr; BACK</button>
-    <div className="job-container">
-      <img src={joblisting} alt="joblisting"></img>
+  ]
 
-      <h2>Job Listing</h2>
-      <p>Job listing is a web page which have the collectiong of available job which user can filter according to their need.</p>
-      <h4> Tech Stack </h4>
-      <p><span>Angular</span>-<span>Bootstrap</span>-<span>PWA</span></p>
-    </div>
-  </section>)
-    :
-    (<section>
+  const modalContentGenerator = (id) => {
+    setFlag({ show: true, project: projects.find(item => item.id === id) });
+  }
+
+  const modal = (data.show && data.project != null) ? (<div className="modal">
+    <section>
       <button onClick={() => setFlag({ show: false })} className="read-more">&larr; BACK</button>
       <div className="job-container">
-        <img src={tinyurl} alt="tinyurl"></img><h2>Tiny URL</h2>
-        <p>Tiny URL is a web app which will shorten the long string of url.</p>
+        <img src={data.project.source.name} alt="image"></img>
+
+        <h2>{data.project.name}</h2>
+        <p>{data.project.desc}</p>
         <h4> Tech Stack </h4>
-        <p><span>Django</span>-<span>Python</span>-<span>SQLite</span></p>
+        <p style={{ display: 'flex', justifyContent: 'center' }}>{data.project.tech.map(item => (<span style={{ marginRight: '10px', marginLeft: '10px' }} key={item}>{item}</span>))}</p>
       </div>
-    </section>);
+    </section>
+  </div>) : null;
 
-
-  const modal = data.show ? (<div className="modal">{modalContent}</div>) : null;
 
   const container = data.show ? null : (<div className="work-container">
-    <div className="work-card">
-      <img src={joblisting} alt="joblisting" width="99%"></img>
+    {projects.map(project => (<div key={project.id} className="work-card">
+      <img src={project.source.name} alt='image' width="99%"></img>
       <p >
-        <code>Job Listing</code>
+        <code>{project.name}</code>
       </p>
       <div className="button-container">
-        <a href="https://github.com/Shubham-1994/JobListing"><button className="read-more">GIT HUB</button></a>
-        <a href="https://myjoblisting.netlify.app/"><button className="read-more">GO TO WEBSITE</button></a>
-        <button onClick={() => setFlag({ show: true, workData: 'joblisting' })} className="read-more">READ MORE</button>
+        <a href={project.github}><button className="read-more">GIT HUB</button></a>
+        {project.website ? (<a href={project.website}><button className="read-more">GO TO WEBSITE</button></a>) : null}
+        <button onClick={() => modalContentGenerator(project.id)} className="read-more">READ MORE</button>
       </div>
-    </div>
-
-    <div className="work-card">
-      <img src={tinyurl} alt="joblisting" width="99%"></img>
-      <p >
-        <code>Tiny URL</code>
-      </p>
-      <div className="button-container">
-        <a href="https://github.com/Shubham-1994/TinyUrl"><button className="read-more">GIT HUB</button></a>
-        {/* <a href="https://myjoblisting.netlify.app/"><button className="read-more">GO TO WEBSITE</button></a> */}
-        <button onClick={() => setFlag({ show: true, workData: 'tinyurl' })} className="read-more">READ MORE</button>
-      </div>
-    </div>
+    </div>))}
   </div>)
-
-  // setFlag = (f) => { console.log(f); flag = f }
   return (
 
     <div className="container">
